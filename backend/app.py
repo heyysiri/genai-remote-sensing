@@ -88,53 +88,6 @@ def classify_image():
     else:
         return "This endpoint is for POST requests to classify images."    
     
-# def tversky_loss(y_true, y_pred, alpha=0.7, beta=0.3):
-#     smooth = 1e-6
-#     y_true_flat = tf.keras.backend.flatten(y_true)
-#     y_pred_flat = tf.keras.backend.flatten(y_pred)
-#     true_pos = tf.reduce_sum(y_true_flat * y_pred_flat)
-#     false_neg = tf.reduce_sum(y_true_flat * (1 - y_pred_flat))
-#     false_pos = tf.reduce_sum((1 - y_true_flat) * y_pred_flat)
-#     tversky = (true_pos + smooth) / (true_pos + alpha * false_neg + beta * false_pos + smooth)
-#     return 1 - tversky
-
-# def dice_coef(y_true, y_pred):
-#     smooth = 1e-15
-#     y_true = tf.keras.layers.Flatten()(y_true)
-#     y_pred = tf.keras.layers.Flatten()(y_pred)
-#     intersection = tf.reduce_sum(y_true * y_pred)
-#     return (2. * intersection + smooth) / (tf.reduce_sum(y_true) + tf.reduce_sum(y_pred) + smooth)
-
-# def iou(y_true, y_pred):
-#     smooth = 1e-15
-#     intersection = tf.reduce_sum(y_true * y_pred)
-#     sum_ = tf.reduce_sum(y_true + y_pred)
-#     jac = (intersection + smooth) / (sum_ - intersection + smooth)
-#     return jac
-
-# def sensitivity(y_true, y_pred):
-#     true_positives = tf.reduce_sum(tf.round(y_true * y_pred))
-#     possible_positives = tf.reduce_sum(tf.round(y_true))
-#     return true_positives / (possible_positives + tf.keras.backend.epsilon())
-
-# def precision(y_true, y_pred):
-#     true_positives = tf.reduce_sum(tf.round(y_true * y_pred))
-#     predicted_positives = tf.reduce_sum(tf.round(y_pred))
-#     return true_positives / (predicted_positives + tf.keras.backend.epsilon())
-
-# def specificity(y_true, y_pred):
-#     true_negatives = tf.reduce_sum(tf.round((1 - y_true) * (1 - y_pred)))
-#     possible_negatives = tf.reduce_sum(tf.round(1 - y_true))
-#     return true_negatives / (possible_negatives + tf.keras.backend.epsilon())
-
-# flood_model = load_model("modell.keras", custom_objects={
-#     'tversky_loss': tversky_loss,
-#     'dice_coef': dice_coef,
-#     'iou': iou,
-#     'sensitivity': sensitivity,
-#     'precision': precision,
-#     'specificity': specificity
-# })
 
 cf = {
     "image_size": 256,
@@ -180,7 +133,8 @@ def detect_flood():
         
         image = original_image.resize((cf["image_size"], cf["image_size"]))
         
-        
+        #this ground truth pic is only hard coded for a specific pic to show the evaluation
+        #for predicted flood area and actual 
         ground_truth_path = 'gim.png' 
         if os.path.exists(ground_truth_path):
             ground_truth_original = Image.open(ground_truth_path).convert('RGB')
