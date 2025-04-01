@@ -64,19 +64,21 @@ By integrating these features, the app contributes to advancements in environmen
    ```bash
    git clone https://github.com/heyysiri/genai-remote-sensing.git
    cd genai-remote-sensing
-### Step 2: Download Pretrained Models
-1. Open the Google Colab Notebooks given in the 'backend' folder of the repository.
-2. Execute the notebook cells to export the models in ONNX format.
-3. Use Colab's file management system to download the models directly to your local system or Google Drive.
-4. Place the models in a directory of your choice.
+### Step 2: Set Up the Backend
+1. Navigate to the backend folder and build the Docker image:
+  ```bash
+  docker build -t backend ./backend
+  ```
+2. After building the image, run a Docker container from it:
+  ```bash
+  docker run -d -p 8080:8080 --name backend-container backend
+  ```
 
 ### Step 3: Run the Application
-1. Start the backend by running the following command in the project directory:
-   ```bash
-   docker-compose up --build
-2. Start the frontend using Flutter:
+Start the frontend using Flutter:
    ```bash
    flutter run
+   ```
 ### Step 4: Explore the Features
 1. Use the Crop Classification tool to identify crop types with high precision.
 2. Analyze flood-prone regions with the Flood Area Detection feature.
