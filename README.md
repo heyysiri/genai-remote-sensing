@@ -16,6 +16,11 @@ This mobile app uses **GenAI techniques** to perform:
 By integrating these features, the app contributes to advancements in environmental monitoring, disaster management, agriculture, and more.
 
 ---
+# Demo
+
+
+https://github.com/user-attachments/assets/700ac2ec-1bce-4d88-87e8-a53315c4dc14
+
 
 ## 🚀 Features
 
